@@ -37,3 +37,10 @@ We are predicting the motion of the objects in a given scene. For test, you will
 - **test.csv** - the test set, in .zarr format
 - **mask.npz** - a boolean mask for the test set. All and only the agents included in the mask should be submitted
 - **sample_submission.csv** - two sample submissions, one in multi-mode format, the other in single-mode
+
+The goal of this competition is to predict the trajectories of other traffic participants. You can employ uni-modal models yielding a single prediction per sample, or multi-modal ones generating multiple hypotheses (up to 3) - further described by a confidence vector.
+
+Due to the high amount of multi-modality and ambiguity in traffic scenes, the used evaluation metric to score this competition is tailored to account for multiple predictions.
+The goal of this competition is to predict the trajectories of other traffic participants. You can employ uni-modal models yielding a single prediction per sample, or multi-modal ones generating multiple hypotheses (up to 3) - further described by a confidence vector.
+
+We calculate the negative log-likelihood of the ground truth data given the multi-modal predictions. Let us take a closer look at this.
