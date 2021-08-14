@@ -9,7 +9,7 @@ Our aim is to build motion prediction models for self-driving vehicles. You'll h
 
 Lyft’s mission is to improve people’s lives with the world’s best transportation. They believe in a future where self-driving cars make transportation safer, environment-friendly and more accessible for everyone. Their goal is to accelerate development across the industry by sharing data with researchers. As a result of your participation, you can have a hand in propelling the industry forward and helping people around the world benefit from self-driving cars sooner.
 
-##Data Description
+## Data Description
 
 The Lyft Motion Prediction for Autonomous Vehicles competition is fairly unique, data-wise. In it, a very large amount of data is provided, which can be used in many different ways. Reading the data is also complex - please refer to Lyft's L5Kit module and sample notebooks to properly load the data and use it for training. Further Kaggle-specific sample notebooks will follow shortly.
 
@@ -22,3 +22,18 @@ The data is packaged in .zarr files. These are loaded using the zarr Python modu
 - **agents:** a generic entity captured by the vehicle's sensors. Note that only 4 of the 17 possible agent label_probabilities are present in this dataset.
 - **agents_mask:** a mask that (for train and validation) masks out objects that aren't useful for training. In test, the mask (provided in files as mask.npz) masks out any test object for which predictions are NOT required.
 - **traffic_light_faces:** traffic light information.
+
+## What am I predicting?
+
+We are predicting the motion of the objects in a given scene. For test, you will have 99 frames of objects moving around will be asked to predict their location in the next 50.
+
+## Files
+
+- aerial_map - an aerial map used when rasterisation is performed with mode "py_satellite"
+- semantic_map - a high definition semantic map used when rasterisation is performed with mode "py_semantic"
+- sample.zarr - a small sample set, designed for exploration
+- train.zarr - the training set, in .zarr format
+- validate.zarr - a validation set (roughly the size of train)
+- test.csv - the test set, in .zarr format
+- mask.npz - a boolean mask for the test set. All and only the agents included in the mask should be submitted
+- sample_submission.csv - two sample submissions, one in multi-mode format, the other in single-mode
